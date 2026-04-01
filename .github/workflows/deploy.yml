@@ -44,7 +44,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         uses: nwtgck/actions-netlify@v2.0
         with:
-          publish-dir: './.svelte-kit/output/client'
+          publish-dir: './build'
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: "Deploy from GitHub Actions - ${{ github.event.head_commit.message }}"
