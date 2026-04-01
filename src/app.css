@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────
+   TAILWIND V4 THEME — @theme inline lets utilities use CSS vars at runtime
+   so dark mode overrides work without extra class variants.
+   ─────────────────────────────────────────────────────────────────────────*/
+
+@theme inline {
+  /* Brand */
+  --color-brand:          var(--c-brand);
+  --color-brand-hover:    var(--c-brand-hover);
+  --color-brand-subtle:   var(--c-brand-subtle);
+
+  /* Status */
+  --color-success:        var(--c-success);
+  --color-error:          var(--c-error);
+  --color-warning:        var(--c-warning);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Runtime CSS Custom Properties — Light Mode
+   ─────────────────────────────────────────────────────────────────────────*/
+:root {
+  /* Brand */
+  --c-brand:               #2563eb;
+  --c-brand-hover:         #1d4ed8;
+  --c-brand-subtle:        #eff6ff;
+
+  /* Status */
+  --c-success:             #16a34a;
+  --c-error:               #dc2626;
+  --c-warning:             #d97706;
+
+  /* Surfaces */
+  --color-bg-primary:      #ffffff;
+  --color-bg-secondary:    #f9fafb;
+  --color-bg-tertiary:     #f3f4f6;
+
+  /* Text */
+  --color-text-primary:    #111827;
+  --color-text-secondary:  #6b7280;
+  --color-text-muted:      #9ca3af;
+
+  /* Border */
+  --color-border:          #e5e7eb;
+  --color-border-strong:   #d1d5db;
+
+  /* Card */
+  --color-card-bg:         #ffffff;
+  --color-card-border:     #e5e7eb;
+  --color-card-shadow:     0 1px 3px rgba(0, 0, 0, 0.1);
+
+  /* Status subtle backgrounds */
+  --color-error-subtle:    #fef2f2;
+  --color-success-subtle:  #f0fdf4;
+  --color-warning-subtle:  #fffbeb;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Dark Mode Overrides
+   ─────────────────────────────────────────────────────────────────────────*/
+html.dark {
+  --c-brand:               #3b82f6;
+  --c-brand-hover:         #60a5fa;
+  --c-brand-subtle:        #1e3a5f;
+
+  --c-success:             #22c55e;
+  --c-error:               #f87171;
+  --c-warning:             #fbbf24;
+
+  --color-bg-primary:      #0f172a;
+  --color-bg-secondary:    #1e293b;
+  --color-bg-tertiary:     #334155;
+
+  --color-text-primary:    #f1f5f9;
+  --color-text-secondary:  #94a3b8;
+  --color-text-muted:      #64748b;
+
+  --color-border:          #334155;
+  --color-border-strong:   #475569;
+
+  --color-card-bg:         #1e293b;
+  --color-card-border:     #334155;
+  --color-card-shadow:     0 1px 3px rgba(0, 0, 0, 0.4);
+
+  --color-error-subtle:    #7f1d1d;
+  --color-success-subtle:  #052e16;
+  --color-warning-subtle:  #78350f;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Global
+   ─────────────────────────────────────────────────────────────────────────*/
+body {
+  transition: background-color 200ms, color 200ms;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Component Classes
+   (Written in plain CSS using var() to avoid @apply with unknown utilities)
+   ─────────────────────────────────────────────────────────────────────────*/
+@layer components {
+  /* Typography scale */
+  .text-display { font-size: 2.25rem; font-weight: 700; line-height: 1.25; }
+  .text-h1      { font-size: 1.875rem; font-weight: 700; line-height: 1.25; }
+  .text-h2      { font-size: 1.5rem; font-weight: 600; line-height: 1.375; }
+  .text-h3      { font-size: 1.25rem; font-weight: 600; }
+  .text-small   { font-size: 0.875rem; }
+  .text-micro   { font-size: 0.75rem; }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    background-color: var(--c-brand);
+    color: white;
+    transition: background-color 150ms, opacity 150ms;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background-color: var(--c-brand-hover); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+    transition: background-color 150ms;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .btn-secondary:hover { background-color: var(--color-bg-tertiary); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
+    background: transparent;
+    border: none;
+    transition: background-color 150ms;
+    cursor: pointer;
+  }
+  .btn-ghost:hover { background-color: var(--color-bg-secondary); }
+
+  /* Input */
+  .input-base {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-size: 0.875rem;
+    transition: border-color 150ms, box-shadow 150ms;
+  }
+  .input-base::placeholder { color: var(--color-text-muted); }
+  .input-base:focus {
+    outline: none;
+    border-color: var(--c-brand);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-brand) 20%, transparent);
+  }
+
+  /* Card */
+  .card-base {
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: var(--color-card-shadow);
+  }
+
+  /* Prose overrides for post content */
+  .prose :where(a) { color: var(--c-brand); }
+  .prose :where(a):hover { color: var(--c-brand-hover); }
+  .prose :where(code) {
+    background-color: var(--color-bg-tertiary);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+  }
+  .prose :where(pre) {
+    background-color: var(--color-bg-tertiary);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+  }
+  .prose :where(h1, h2, h3, h4) { font-weight: 600; scroll-margin-top: 5rem; }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Utility Classes (custom, using CSS vars directly)
+   ─────────────────────────────────────────────────────────────────────────*/
+@layer utilities {
+  /* Surfaces */
+  .bg-primary   { background-color: var(--color-bg-primary); }
+  .bg-secondary { background-color: var(--color-bg-secondary); }
+  .bg-tertiary  { background-color: var(--color-bg-tertiary); }
+  .bg-card      { background-color: var(--color-card-bg); }
+
+  /* Text */
+  .text-primary   { color: var(--color-text-primary); }
+  .text-secondary { color: var(--color-text-secondary); }
+  .text-muted     { color: var(--color-text-muted); }
+
+  /* Brand alias — text-brand / bg-brand etc. come from @theme inline above */
+
+  /* Borders */
+  .border-default { border-color: var(--color-border); }
+  .border-strong  { border-color: var(--color-border-strong); }
+
+  /* Shadows */
+  .shadow-card { box-shadow: var(--color-card-shadow); }
+
+  /* Placeholder color helper */
+  .placeholder-muted::placeholder { color: var(--color-text-muted); }
+}

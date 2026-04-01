@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  publish = ".svelte-kit/output/client"
+
+[env]
+  [env.production]
+    PUBLIC_API_BASE_URL = "https://l3x9sj5t5l.execute-api.ap-south-1.amazonaws.com/dev"
+    PUBLIC_S3_BUCKET_URL = "https://serverless-blog-post-media-dev.s3.ap-south-1.amazonaws.com"
+
+[env]
+  [env.preview]
+    PUBLIC_API_BASE_URL = "https://l3x9sj5t5l.execute-api.ap-south-1.amazonaws.com/dev"
+    PUBLIC_S3_BUCKET_URL = "https://serverless-blog-post-media-dev.s3.ap-south-1.amazonaws.com"
+
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200
